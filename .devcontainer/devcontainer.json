@@ -5,6 +5,10 @@
   // 이미지를 미리 만들어 두었으므로 학생은 내려받기만 하면 된다.
   "image": "ghcr.io/goshng/bioinfolab:2026a",
 
+  "remoteEnv": {
+    "MYHOME": "${containerWorkspaceFolder}"
+  },
+
   "customizations": {
     "vscode": {
       "extensions": ["ms-python.python", "ms-toolsai.jupyter"],
