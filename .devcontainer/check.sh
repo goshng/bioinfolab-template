@@ -1,36 +1,49 @@
 #!/usr/bin/env bash
-# Codespace가 처음 만들어질 때 한 번 실행된다.
-# 도구가 제대로 설치되어 있는지 확인하여 화면에 보여 준다.
+# Codespace 가 처음 만들어질 때 한 번 실행된다.
+# 어떤 환경으로 열렸는지, 도구가 들어 있는지 보여 준다.
 
 echo ""
 echo "=============================================="
-echo "  생물정보학실험 실습 환경 확인"
+echo "  생물정보학실험 실습 환경"
 echo "=============================================="
 
 check() {
     if command -v "$1" > /dev/null 2>&1; then
-        printf "  [ OK ] %-12s %s\n" "$1" "$($2 2>&1 | head -1)"
+        printf "  [ OK ] %s\n" "$1"
     else
-        printf "  [ 없음 ] %-12s\n" "$1"
+        printf "  [  -  ] %s\n" "$1"
     fi
 }
 
-check python3 "python3 --version"
-check seqkit   "seqkit version"
-check fastqc   "fastqc --version"
-check fastp    "fastp --version"
-check blastn   "blastn -version"
-check mafft    "mafft --version"
-check iqtree   "iqtree --version"
+echo "  기본"
+check python3
+check git
+check wget
 
 echo ""
-echo "  아래 두 가지는 처음 실행할 때 시간이 걸립니다."
-echo "  10주차와 11주차에 사용합니다."
-command -v shovill > /dev/null && echo "  [ OK ] shovill" || echo "  [ 없음 ] shovill"
-command -v prokka  > /dev/null && echo "  [ OK ] prokka"  || echo "  [ 없음 ] prokka"
+echo "  conda"
+check micromamba
 
 echo ""
-echo "  작업 폴더: $(pwd)"
-echo "  실습이 끝나면 왼쪽 아래에서 Codespace를 정지하세요."
+echo "  서열 분석"
+check seqkit
+check blastn
+check mafft
+check iqtree
+check fastqc
+check fastp
+
+echo ""
+echo "  유전체"
+check shovill
+check prokka
+
+echo ""
+echo "  [  -  ] 표시는 이 환경에 없는 도구입니다. 정상입니다."
+echo "  그 주차에 맞는 환경을 골랐는지 확인하세요."
+echo ""
+echo "  작업 폴더 : ${MYHOME:-$(pwd)}"
+echo "  돌아오려면 : cd"
+echo "  끝나면 왼쪽 아래에서 Codespace 를 정지하세요."
 echo "=============================================="
 echo ""

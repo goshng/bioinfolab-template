@@ -1,9 +1,7 @@
 {
-  "name": "bioinfo-lab",
-
-  //  부분을 본인의 GitHub 조직 또는 계정 이름(소문자)으로 바꾼다.
-  // 이미지를 미리 만들어 두었으므로 학생은 내려받기만 하면 된다.
-  "image": "ghcr.io/goshng/bioinfolab:2026a",
+  // OWNER 를 본인 GitHub 계정 이름(소문자)으로 바꾼다.
+  "name": "4. 유전체 (10~11주차)",
+  "image": "ghcr.io/OWNER/bioinfolab:genome",
 
   "remoteEnv": {
     "MYHOME": "${containerWorkspaceFolder}"
@@ -22,14 +20,11 @@
     }
   },
 
-  // 처음 열릴 때 도구가 제대로 들어 있는지 확인해 준다.
   "postCreateCommand": "bash .devcontainer/check.sh",
 
-  // 10주차 조립 실습 전까지는 2코어로 충분하다.
-  // 4코어로 올리면 무료 사용 시간이 두 배로 빨리 줄어든다.
   "hostRequirements": {
-    "cpus": 2,
-    "memory": "8gb",
+    "cpus": 4,
+    "memory": "16gb",
     "storage": "32gb"
   }
 }
